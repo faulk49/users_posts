@@ -27,6 +27,9 @@ gem 'react-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# Serialization of objects
+gem 'active_model_serializers', '~> 0.10.0'
+
 group :development, :test do
   # Testing Framework
   gem 'rspec-rails', '~> 3.5'
