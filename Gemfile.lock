@@ -102,6 +102,9 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.6)
     jsonapi-renderer (0.1.2)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (2.8.0)
@@ -225,6 +228,7 @@ DEPENDENCIES
   faker
   haml-rails (~> 0.9)
   jquery-rails
+  kaminari
   pg (~> 0.15)
   rails (= 4.2.6)
   react-rails
