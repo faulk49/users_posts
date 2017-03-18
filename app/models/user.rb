@@ -4,4 +4,12 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, presence: true
   has_many :posts, dependent: :destroy
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def to_s
+    full_name
+  end
 end

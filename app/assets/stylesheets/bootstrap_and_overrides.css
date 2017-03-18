@@ -5,3 +5,92 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+  .navbar-default {
+  background-color: #3ce7c9;
+  border-color: #50d9bb;
+}
+.navbar-default .navbar-brand {
+  color: #fd7f52;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #f7dc0e;
+}
+.navbar-default .navbar-text {
+  color: #fd7f52;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #fd7f52;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #f7dc0e;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu {
+  background-color: #3ce7c9;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #fd7f52;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+  color: #f7dc0e;
+  background-color: #50d9bb;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+  background-color: #50d9bb;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+  color: #f7dc0e;
+  background-color: #50d9bb;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #f7dc0e;
+  background-color: #50d9bb;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #f7dc0e;
+  background-color: #50d9bb;
+}
+.navbar-default .navbar-toggle {
+  border-color: #50d9bb;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #50d9bb;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fd7f52;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #fd7f52;
+}
+.navbar-default .navbar-link {
+  color: #fd7f52;
+}
+.navbar-default .navbar-link:hover {
+  color: #f7dc0e;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #fd7f52;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #f7dc0e;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #f7dc0e;
+    background-color: #50d9bb;
+  }
+}
