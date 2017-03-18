@@ -1,5 +1,9 @@
-factory :user do
-  email
-  first_name
-  last_name
+FactoryGirl.define do
+  factory :user do
+    email Faker::Internet.email
+    first_name Faker::Name.unique.first_name
+    last_name Faker::Name.unique.last_name
+    password 'password'
+    password_confirmation 'password'
+  end
 end
