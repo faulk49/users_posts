@@ -11,9 +11,7 @@ describe User, type: :model do
 
   # Tests for attributes not included with Devise.
   context 'validations' do
-
     context 'with valid attributes' do
-      # before(:each) { build(:user) }
 
       it 'should have a first name' do
         expect(user.first_name).to be_present
