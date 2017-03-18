@@ -13,7 +13,7 @@ describe User, type: :model do
   context 'validations' do
 
     context 'with valid attributes' do
-      before(:each) { build(:user) }
+      # before(:each) { build(:user) }
 
       it 'should have a first name' do
         expect(user.first_name).to be_present
@@ -31,7 +31,7 @@ describe User, type: :model do
       it 'is invalid without a first name' do
         expect(user_no_first_name).not_to be_valid
       end
-      
+
       it 'is invalid without a last name' do
         expect(user_no_last_name).not_to be_valid
       end
