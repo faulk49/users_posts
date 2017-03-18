@@ -2,12 +2,18 @@ class PostsController < ApplicationController
   serialization_scope :view_context
 
   def index
-    posts = Post.includes(:user).by_creation_date
+    posts = Post.includes(:user)
+                .by_creation_date
+                .filter(filter_params)
+                .page(params[:page])
+                .per(2)
+                .without_count
+
     render json: posts,
             meta:
-              {
+                pagination_attributes(posts,
                 create_post_path: posts_path
-              },
+                ),
               key_transform: :camel_lower,
             status: :ok
   end
@@ -25,5 +31,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def filter_params
+    params.slice(:by_user)
   end
 end

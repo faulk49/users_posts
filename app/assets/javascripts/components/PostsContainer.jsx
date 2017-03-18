@@ -2,16 +2,17 @@ class PostsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisible: false,
       posts: [],
       didFetchPosts: false,
-      showForm: false
+      modalOpen: false
     }
     this.fetchPosts = this.fetchPosts.bind(this);
     this.fetchPostsDone = this.fetchPostsDone.bind(this);
     this.handleNewPostClick = this.handleNewPostClick.bind(this);
     this.updatePosts = this.updatePosts.bind(this);
-    this.hideForm = this.hideForm.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
+    this.filterPosts = this.filterPosts.bind(this);
   }
 
   componentDidMount() {
@@ -27,17 +28,37 @@ class PostsContainer extends React.Component {
   }
 
   fetchPostsDone(data){
-    const { posts } = data
-    this.setState({ posts, didFetchPosts: true })
-    this.postsPath = data.meta.createPostPath
+    const { posts } = data;
+    const { pagination, createPostPath } = data.meta;
+
+    this.setState({ posts, didFetchPosts: true, pagination })
+    this.postsPath = createPostPath
   }
 
   handleNewPostClick() {
-    this.setState({ showForm: true })
+    $('#postModal').modal('show');
+    this.setState({ modalOpen: true });
   }
 
-  hideForm(){
-    this.setState({ showForm: false })
+  hideModal() {
+    $('#postModal').modal('hide');
+    this.setState({ modalOpen: false });
+  }
+
+  handlePageChange(page){
+    $.ajax({
+      url: `${this.postsPath}?page=${page}`,
+      dataType: 'json'
+    })
+    .done(data => this.fetchPostsDone(data))
+  }
+
+  filterPosts() {
+    $.ajax({
+      url: '/posts?by_user=1',
+      dataType: 'json'
+    })
+    .done(data => this.fetchPostsDone(data))
   }
 
   updatePosts(vals) {
@@ -52,22 +73,34 @@ class PostsContainer extends React.Component {
       data: { post }
     })
     .done(data => {
-      this.setState(previousState => ({
-        posts: [data.post, ...previousState.posts],
-        showForm: false
-      }));
+      this.fetchPosts();
+      this.hideModal();
     });
   }
 
   render() {
-    const { posts, showForm } = this.state;
+    const { posts, modalOpen, pagination } = this.state;
     return(
       <div>
+        <PostModal
+          updatePosts={this.updatePosts}
+          hideModal={this.hideModal}
+          modalOpen={modalOpen}
+        />
+        <NewPostButton
+          handleClick={this.handleNewPostClick}
+          disabled={modalOpen}
+        />
+        <MyPosts filterByUser={this.filterPosts} />
         {
-          showForm ?
-            <NewPostForm submitPost={this.updatePosts} onCancel={this.hideForm} />
-            :
-            <NewPostButton handleClick={this.handleNewPostClick} />
+          pagination &&
+            <span className='pull-right'>
+              <button
+                onClick={() => this.handlePageChange(pagination.posts.nextPage || 1)} type='button'>Next</button>
+              <button
+                onClick={() => this.handlePageChange(pagination.posts.prevPage || 1)}
+                type='button'>Prev</button>
+            </span>
         }
         {
           posts.length && posts.map((post,index) => <PostItem post={post} key={index}/>)
@@ -83,6 +116,36 @@ const NewPostButton = props => {
       type="button"
       className="btn btn-primary"
       onClick={props.handleClick}
+      disabled={props.modalOpen}
     >New Post</button>
+  )
+}
+
+const PostModal = props => {
+  const { updatePosts, hideModal, modalOpen } = props;
+  return(
+    <div className='modal fade' role='dialog' id="postModal">
+      <div className='modal-dialog' role='dialog'>
+        <div className='modal-content' role='document'>
+          <div className='modal-header'>
+            <h4 className='modal-title'>
+              New Post
+            </h4>
+          </div>
+          <div className='modal-body'>
+            <PostForm
+            submitPost={updatePosts}
+            onCancel={hideModal}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const MyPosts = props => {
+  return(
+    <button type="button" onClick={props.filterByUser}>My Posts</button>
   )
 }

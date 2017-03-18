@@ -6,6 +6,19 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def pagination_attributes(resource, extra_options = {})
+    resource_name = resource.klass.to_s.pluralize.underscore.to_sym
+    {
+      pagination: {
+        resource_name => {
+          current_page: resource.current_page,
+          next_page: resource.next_page,
+          prev_page: resource.prev_page
+        }
+      }
+    }.merge(extra_options)
+  end
+
   protected
 
   def configure_permitted_parameters

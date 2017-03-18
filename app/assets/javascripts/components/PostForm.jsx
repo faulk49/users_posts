@@ -1,14 +1,16 @@
-class NewPostForm extends React.Component {
+class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
       body: ''
     };
+
     this.setTitle = this.setTitle.bind(this);
     this.setBody = this.setBody.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearForm = this.clearForm.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   setTitle(e) {
@@ -30,9 +32,13 @@ class NewPostForm extends React.Component {
     this.clearForm();
   }
 
+  handleCancel() {
+    this.props.onCancel();
+    this.clearForm();
+  }
+
   render() {
     const { title, body } = this.state;
-    const { submitPost, onCancel } = this.props;
     return(
       <div>
         <label>Title</label>
@@ -56,11 +62,11 @@ class NewPostForm extends React.Component {
           className='btn btn-success'
           onClick={this.handleSubmit}
         >Create Post</button>
-        
+
         <button
           type='button'
           className='btn btn-danger pull-right'
-          onClick={onCancel}
+          onClick={this.handleCancel}
           >Cancel</button>
       </div>
     )
