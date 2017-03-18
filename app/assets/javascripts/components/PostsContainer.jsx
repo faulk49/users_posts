@@ -91,7 +91,6 @@ class PostsContainer extends React.Component {
           handleClick={this.handleNewPostClick}
           disabled={modalOpen}
         />
-        <MyPosts filterByUser={this.filterPosts} />
         {
           pagination &&
             <span className='pull-right'>
@@ -102,9 +101,7 @@ class PostsContainer extends React.Component {
                 type='button'>Prev</button>
             </span>
         }
-        {
-          posts.length && posts.map((post,index) => <PostItem post={post} key={index}/>)
-        }
+          <PostList posts={posts}/>
       </div>
     )
   }
@@ -144,8 +141,8 @@ const PostModal = props => {
   )
 }
 
-const MyPosts = props => {
-  return(
-    <button type="button" onClick={props.filterByUser}>My Posts</button>
-  )
-}
+// const MyPosts = props => {
+//   return(
+//     <button type="button" onClick={props.filterByUser}>My Posts</button>
+//   )
+// }

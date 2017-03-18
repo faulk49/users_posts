@@ -25,7 +25,7 @@
         = link_to '<i class="fa fa-home"></i> Home'.html_safe,'#', class: 'navbar-brand'
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li= link_to 'My Posts', posts_path(only_user: true), remote: true
+            %li{class: 'active'}= link_to 'My Posts', posts_path(only_user: true), remote: true
           %ul.nav.navbar-nav.navbar-right
             %li= link_to 'Sign Out', destroy_user_session_path,
               method: :delete if user_signed_in?
