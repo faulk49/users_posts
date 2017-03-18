@@ -22,10 +22,13 @@
       .container
         %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
           %span.icon-bar
+          %span.icon-bar
         = link_to 'Awesome Messages','#', class: 'navbar-brand'
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li= link_to "Link 1", "#"
+            %li= link_to 'Sign Out', destroy_user_session_path,method: :delete if user_signed_in?
+
 
     .container
       .row
