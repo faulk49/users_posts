@@ -49,4 +49,26 @@ describe Post, type: :model do
       end
     end
   end
+
+  context 'scopes and class methods' do
+    let!(:post1) { create(:post) }
+    let!(:post2) { create(:post) }
+
+
+    describe 'all posts' do
+      it 'returns posts from all users' do
+        result = Post.all
+        expect(result).to be_a(ActiveRecord::Relation)
+        expect(result).not_to be_empty
+        expect(result).to include(post1, post2)
+      end
+
+       it 'returns all posts in order of creation(oldest first)' do
+         result = Post.by_creation_date
+         expect(result).not_to be_empty
+         expect(result).to eq([post2, post1])
+         expect(result).not_to eq([post1, post2])
+       end
+    end
+  end
 end
