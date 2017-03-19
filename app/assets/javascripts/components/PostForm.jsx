@@ -3,7 +3,7 @@ class PostForm extends React.Component {
     super(props);
     this.state = {
       title: '',
-      body: ''
+      body: '',
     };
 
     this.setTitle = this.setTitle.bind(this);
@@ -11,6 +11,7 @@ class PostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   setTitle(e) {
@@ -37,6 +38,11 @@ class PostForm extends React.Component {
     this.clearForm();
   }
 
+  renderErrors(name) {
+    const errors = this.props.errors[name];
+    return errors && errors.map((e,i) => <p key={i} style={{color: 'red'}}>{e}</p>)
+  }
+
   render() {
     const { title, body } = this.state;
     return(
@@ -50,12 +56,14 @@ class PostForm extends React.Component {
           autoFocus={true}
           autoComplete={false}
         />
+          {this.renderErrors('title')}
 
         <label>Body</label>
         <textarea
           value={body}
           className="form-control"
           onChange={this.setBody}/>
+          {this.renderErrors('body')}
 
         <button
           type='button'

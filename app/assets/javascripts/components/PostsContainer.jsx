@@ -4,15 +4,19 @@ class PostsContainer extends React.Component {
     this.state = {
       posts: [],
       didFetchPosts: false,
-      modalOpen: false
+      modalOpen: false,
+      postFormErrors: {},
+      showSinglePost: false,
+      currentPost: null
     }
+
     this.fetchPosts = this.fetchPosts.bind(this);
     this.fetchPostsDone = this.fetchPostsDone.bind(this);
     this.handleNewPostClick = this.handleNewPostClick.bind(this);
     this.updatePosts = this.updatePosts.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
-    this.filterPosts = this.filterPosts.bind(this);
+    this.showPostInfo = this.showPostInfo.bind(this);
   }
 
   componentDidMount() {
@@ -42,20 +46,12 @@ class PostsContainer extends React.Component {
 
   hideModal() {
     $('#postModal').modal('hide');
-    this.setState({ modalOpen: false });
+    this.setState({ modalOpen: false, postFormErrors: {} });
   }
 
   handlePageChange(page){
     $.ajax({
       url: `${this.postsPath}?page=${page}`,
-      dataType: 'json'
-    })
-    .done(data => this.fetchPostsDone(data))
-  }
-
-  filterPosts() {
-    $.ajax({
-      url: '/posts?by_user=1',
       dataType: 'json'
     })
     .done(data => this.fetchPostsDone(data))
@@ -75,34 +71,48 @@ class PostsContainer extends React.Component {
     .done(data => {
       this.fetchPosts();
       this.hideModal();
-    });
+    })
+    .fail(err => this.setState({postFormErrors: err.responseJSON.errors}))
+  }
+
+  showPostInfo(val) {
+    this.setState({currentPost: val, showSinglePost: true})
   }
 
   render() {
-    const { posts, modalOpen, pagination } = this.state;
+    const {
+      posts,
+      modalOpen,
+      pagination,
+      postFormErrors,
+      currentPost,
+      showSinglePost
+    } = this.state;
+
     return(
       <div>
-        <PostModal
-          updatePosts={this.updatePosts}
-          hideModal={this.hideModal}
-          modalOpen={modalOpen}
-        />
+        {
+          showSinglePost ? <ShowPost post={currentPost} /> :
+          <div>
         <NewPostButton
           handleClick={this.handleNewPostClick}
           disabled={modalOpen}
         />
-        {
-          pagination &&
-            <span className='pull-right'>
-              <button
-                onClick={() => this.handlePageChange(pagination.posts.nextPage || 1)} type='button'>Next</button>
-              <button
-                onClick={() => this.handlePageChange(pagination.posts.prevPage || 1)}
-                type='button'>Prev</button>
-            </span>
-        }
-          <PostList posts={posts}/>
+        <div className='row'>
+          <div className='col-sm-7 col-sm-offset-4'>
+            <PostList posts={posts} showPost={this.showPostInfo}/>
+          </div>
+        </div>
       </div>
+      }
+      <PostModal
+        updatePosts={this.updatePosts}
+        hideModal={this.hideModal}
+        modalOpen={modalOpen}
+        errors={postFormErrors}
+      />
+      </div>
+
     )
   }
 }
@@ -111,17 +121,17 @@ const NewPostButton = props => {
   return(
     <button
       type="button"
-      className="btn btn-primary"
+      className="btn btn-primary btn-lg"
       onClick={props.handleClick}
       disabled={props.modalOpen}
-    >New Post</button>
+    >Create New Post</button>
   )
 }
 
 const PostModal = props => {
-  const { updatePosts, hideModal, modalOpen } = props;
+  const { updatePosts, hideModal, modalOpen, errors } = props;
   return(
-    <div className='modal fade' role='dialog' id="postModal">
+    <div className='modal fade' role='dialog' id="postModal" data-backdrop='static'>
       <div className='modal-dialog' role='dialog'>
         <div className='modal-content' role='document'>
           <div className='modal-header'>
@@ -131,6 +141,7 @@ const PostModal = props => {
           </div>
           <div className='modal-body'>
             <PostForm
+            errors={errors}
             submitPost={updatePosts}
             onCancel={hideModal}
             />
@@ -140,9 +151,3 @@ const PostModal = props => {
     </div>
   )
 }
-
-// const MyPosts = props => {
-//   return(
-//     <button type="button" onClick={props.filterByUser}>My Posts</button>
-//   )
-// }

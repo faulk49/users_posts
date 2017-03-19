@@ -1,14 +1,15 @@
-const PostItem = ({post}) => {
+const PostItem = ({post, goToPost}) => {
   return(
-    <div className="panel panel-default">
-      <div className="panel-heading">
-        <h3 className="panel-title">{post.title}</h3>
+    <div className="panel panel-post">
+      <div className="panel-heading post">
+        <a href='#'
+          className="panel-title post"
+          onClick={() => goToPost(post)}
+          >{post.title}</a>
       </div>
       <div className="list-group">
         <div className="list-group-item">
-          <a href="#">
-            {post.authorName}
-          </a>
+            <p style={{color: '#6f2481'}}>{post.authorName}</p>
         </div>
       </div>
     </div>
