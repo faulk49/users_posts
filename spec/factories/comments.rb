@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :comment do
-    body "MyString"
+    body Faker::Lorem.word
   end
 end
