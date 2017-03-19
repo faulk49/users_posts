@@ -2,10 +2,11 @@ class PostsController < ApplicationController
   serialization_scope :view_context
 
   def index
-    posts = Post.includes(:user, :comments)
+    posts = Post.includes(:user,comments: [:author])
                 .by_creation_date
                 .filter(filter_params)
                 .page(params[:page])
+                .per(10)
                 .without_count
 
     render json: posts,

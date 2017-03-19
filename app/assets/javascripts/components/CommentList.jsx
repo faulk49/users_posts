@@ -24,7 +24,7 @@ class CommentList extends React.Component {
       <div className='col-sm-8 col-sm-offset-4'>
         <h4 className='panel-title'>Comments</h4>
         {
-          comments.map((c,i) => <p key={i}>{c.body}</p>)
+          comments.map((c,i) => <CommentItem key={i} comment={c} />)
         }
         {
         showCommentForm && <CommentForm errors={this.props.errors} onCommentSubmit={this.props.onSubmit} path={createCommentPath} />

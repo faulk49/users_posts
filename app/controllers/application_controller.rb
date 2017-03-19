@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     }.merge(extra_options)
   end
 
+  def current_user
+    super || GuestUser.new
+  end
+
   protected
 
   def configure_permitted_parameters
