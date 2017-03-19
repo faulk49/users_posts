@@ -2,34 +2,35 @@ class CommentList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      comments: props.post.comments || [],
       showCommentForm: false,
-      buttonText: 'Comment'
+      buttonText: 'Comment',
+      icon: <i className='fa fa-comment'></i>
     }
     this.toggleShowForm = this.toggleShowForm.bind(this);
   }
 
   toggleShowForm() {
-    const { buttonText } = this.state;
-    const newText = buttonText === 'Comment' ? 'Close' : 'Comment'
-    this.setState({showCommentForm: !this.state.showCommentForm, buttonText: newText })
+    const { buttonText, showCommentForm } = this.state;
+    const icon = !showCommentForm ? <i className='fa fa-close'></i> : <i className='fa fa-comment'></i>
+    const newText = !showCommentForm ? 'Close' : 'Comment'
+    this.setState({showCommentForm: !this.state.showCommentForm, buttonText: newText, icon })
   }
-  
+
   render() {
-    const { comments, showCommentForm } = this.state;
+    const { showCommentForm } = this.state;
+    const { comments } = this.props;
     const { createCommentPath } = this.props.post;
     return(
-      <div>
+      <div className='col-sm-8 col-sm-offset-4'>
         <h4 className='panel-title'>Comments</h4>
         {
-          comments.map(c => c.body)
+          comments.map((c,i) => <p key={i}>{c.body}</p>)
         }
         {
-        showCommentForm && <CommentForm path={createCommentPath} />
+        showCommentForm && <CommentForm errors={this.props.errors} onCommentSubmit={this.props.onSubmit} path={createCommentPath} />
         }
-        <button type='button' onClick={this.toggleShowForm}>
-          <i className='fa fa-comment'></i>
-          {this.state.buttonText}</button>
+        <button type='button' className='pull-right' onClick={this.toggleShowForm}>
+          {this.state.icon}{this.state.buttonText}</button>
       </div>
     )
   }

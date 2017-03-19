@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   before_action :load_post
-  
+
   def create
-    comment = @post.comments.new(post_params)
-    comment.author_id = post.user_id
+    comment = @post.comments.new(comment_params)
+    comment.author_id = @post.user_id
     if comment.save
       render json: comment, status: :created
     else
@@ -18,6 +18,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.permit(:comment).permit(:body)
+    params.require(:comment).permit(:body,:post_id)
   end
 end
