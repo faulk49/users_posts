@@ -54,7 +54,6 @@ describe Post, type: :model do
     let!(:post1) { create(:post) }
     let!(:post2) { create(:post) }
 
-
     describe 'all posts' do
       it 'returns posts from all users' do
         result = Post.all
