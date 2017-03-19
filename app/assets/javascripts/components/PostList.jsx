@@ -1,7 +1,7 @@
 class PostList extends React.Component {
   render() {
     const posts = this.props.posts;
-    const showPost = this.props.showPost
+    const showPost = this.props.showPost;
     return (
       <span>
       {

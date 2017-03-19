@@ -9,6 +9,7 @@ const PostItem = ({post, goToPost}) => {
       </div>
       <div className="list-group">
         <div className="list-group-item">
+          <p>{post.comments && post.comments.length}</p>
             <p style={{color: '#6f2481'}}>{post.authorName}</p>
         </div>
       </div>

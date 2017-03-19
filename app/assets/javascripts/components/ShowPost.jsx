@@ -1,7 +1,17 @@
 class ShowPost extends React.Component {
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack() {
+    this.props.goToIndex();
+  }
   render() {
     const { post } = this.props;
     return(
+      <div>
+      <button onClick={this.goBack} type='button'>Back</button>
       <div className='panel panel-default'>
         <div className='panel panel-heading'>
           <h3 className='panel-title'>
@@ -13,8 +23,9 @@ class ShowPost extends React.Component {
             <p>{post.body}</p>
           </div>
         </div>
-        <CommentList />
+        <CommentList post={post} />
       </div>
+    </div>
     )
   }
 }

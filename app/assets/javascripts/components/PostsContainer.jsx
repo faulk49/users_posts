@@ -17,6 +17,7 @@ class PostsContainer extends React.Component {
     this.hideModal = this.hideModal.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
     this.showPostInfo = this.showPostInfo.bind(this);
+    this.showIndex = this.showIndex.bind(this);
   }
 
   componentDidMount() {
@@ -79,6 +80,11 @@ class PostsContainer extends React.Component {
     this.setState({currentPost: val, showSinglePost: true})
   }
 
+  showIndex() {
+    this.fetchPosts()
+    this.setState({ currentPost: null, showSinglePost: false})
+  }
+
   render() {
     const {
       posts,
@@ -92,7 +98,7 @@ class PostsContainer extends React.Component {
     return(
       <div>
         {
-          showSinglePost ? <ShowPost post={currentPost} /> :
+          showSinglePost ? <ShowPost post={currentPost} goToIndex={this.showIndex} /> :
           <div>
         <NewPostButton
           handleClick={this.handleNewPostClick}
@@ -100,7 +106,10 @@ class PostsContainer extends React.Component {
         />
         <div className='row'>
           <div className='col-sm-7 col-sm-offset-4'>
-            <PostList posts={posts} showPost={this.showPostInfo}/>
+            <PostList
+              posts={posts}
+              showPost={this.showPostInfo}
+            />
           </div>
         </div>
       </div>
