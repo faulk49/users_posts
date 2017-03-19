@@ -5,5 +5,11 @@ FactoryGirl.define do
     last_name Faker::Name.unique.last_name
     password 'password'
     password_confirmation 'password'
+
+    trait :with_posts do
+      after(:create) do |instance|
+        create_list(:post, 2, user: instance)
+      end
+    end
   end
 end

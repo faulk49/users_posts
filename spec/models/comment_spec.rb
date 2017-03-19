@@ -34,13 +34,13 @@ describe Comment, type: :model do
         expect{subject}.to change(Comment, :count).by(1)
       end
 
-      it 'adds the comment to the authoring user associations' do
-        post = comment.post
-        user = post.user
-        comment.author_id = user.id
-        expect{subject}.to change(user.comments,:count).by(1)
-        expect(user.comments.last).to eq(comment)
-      end
+      # it 'adds the comment to the authoring user associations' do
+      #   post = comment.post
+      #   user = post.user
+      #   comment.author_id = user.id
+      #   expect{subject}.to change(user.comments,:count).by(1)
+      #   expect(user.comments.last).to eq(comment)
+      # end
     end
   end
 end

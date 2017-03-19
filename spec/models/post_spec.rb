@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Post, type: :model do
   let(:post) { build(:post) }
+  let!(:user_with_posts) { create(:user, :with_posts) }
 
   context 'valid factory' do
      it 'is valid' do
@@ -51,22 +52,11 @@ describe Post, type: :model do
   end
 
   context 'scopes and class methods' do
-    let!(:post1) { create(:post) }
-    let!(:post2) { create(:post) }
-
-    describe 'all posts' do
-      it 'returns posts from all users' do
-        result = Post.all
-        expect(result).to be_a(ActiveRecord::Relation)
-        expect(result).not_to be_empty
-        expect(result).to include(post1, post2)
-      end
-
-       it 'returns all posts in order of creation(oldest first)' do
-         result = Post.by_creation_date
-         expect(result).not_to be_empty
-         expect(result).to eq([post2, post1])
-         expect(result).not_to eq([post1, post2])
+    describe '.by_user' do
+       it 'returns only the posts of the user id sent in' do
+         results = Post.by_user(user_with_posts.id)
+         expect(results).not_to be_empty
+         expect(results).to eq(user_with_posts.posts)
        end
     end
   end
