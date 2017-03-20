@@ -4,10 +4,10 @@ class PostList extends React.Component {
     const showPost = this.props.showPost;
     return (
       <span>
-      {
-        posts && posts.map((post,index) => <PostItem post={post} key={index} goToPost={showPost} />)
-      }
-    </span>
+        {
+          posts && posts.map((post,index) => <PostItem post={post} key={index} goToPost={showPost} />)
+        }
+      </span>
     )
   }
 }

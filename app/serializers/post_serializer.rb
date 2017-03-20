@@ -1,6 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
   include ActionView::Helpers::DateHelper
-  include
   attributes :title,
              :body,
              :path,
