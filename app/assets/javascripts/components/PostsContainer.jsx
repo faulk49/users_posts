@@ -109,6 +109,7 @@ class PostsContainer extends React.Component {
               pagination &&
                 <nav>
                   <ul className='pager'>
+                    <p>Page {pagination.posts.currentPage} of { pagination.posts.totalPages}</p>
                     {
                       pagination.posts.prevPage &&
                         <li><a href='#'

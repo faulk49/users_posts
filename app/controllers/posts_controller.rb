@@ -7,7 +7,6 @@ class PostsController < ApplicationController
                 .filter(filter_params)
                 .page(params[:page])
                 .per(5)
-                .without_count
 
     render json: posts,
             meta:

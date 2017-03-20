@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
         resource_name => {
           current_page: resource.current_page,
           next_page: resource.next_page,
-          prev_page: resource.prev_page
+          prev_page: resource.prev_page,
+          total_pages: resource.total_pages
         }
       }
     }.merge(extra_options)
