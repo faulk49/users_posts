@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+ body {
+   background-size: cover;
+   background-attachment: fixed;
+   background-position: 30% 20%;
+   background-image: url('sea.png');
+   background-repeat: no-repeat;
+ }
+ h3.message_title {
+   color: #696969;
+ }

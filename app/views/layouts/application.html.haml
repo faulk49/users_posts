@@ -29,9 +29,9 @@
               %li= link_to 'Sign Out', destroy_user_session_path,
                 method: :delete
     .container
-      %h3.text-center Message Board
+      = bootstrap_flash
+      %h3.text-center.message_title Message Board
       .row
-        %h4{class: 'pull-right', style: 'font-family: Courier'} Hello #{current_user.first_name}
         .col-lg-12
-          = bootstrap_flash
+          %h4{class: 'pull-right',style: 'font-family: Courier'} Hello #{current_user.first_name}
           = yield

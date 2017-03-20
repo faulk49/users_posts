@@ -97,7 +97,6 @@ class PostsContainer extends React.Component {
 
     return(
       <div>
-
         {
           showSinglePost ? <ShowPost post={currentPost} goToIndex={this.showIndex} /> :
           <div>
@@ -129,7 +128,7 @@ class PostsContainer extends React.Component {
                 </nav>
             }
 
-        <div className='text-center'>
+        <div className='row'>
           <div className='col-sm-6 col-sm-offset-3'>
             <PostList
               posts={posts}
