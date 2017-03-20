@@ -32,6 +32,7 @@ class CommentForm extends React.Component {
         <input
           type='text'
           className='form-control'
+          style={{margin: 7}}
           onChange={this.setBody}
           value={this.state.body}
           autoFocus={true}
@@ -41,6 +42,7 @@ class CommentForm extends React.Component {
       </div>
         <div className='col-sm-4'>
         <button
+          style={{margin: 10}}
           type='button'
           className='btn btn-default btn-sm'
           onClick={this.submitComment}>Post reply</button>

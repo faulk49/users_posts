@@ -1,10 +1,10 @@
 const CommentItem = props => {
   return(
-    <div>
+    <div className='list-group-item'>
       <span>
-      {props.comment.body}&nbsp;
-      <em>{props.comment.authorName}</em>
-    </span>
-    </div>
+        {props.comment.body}-
+        <em>{props.comment.authorName}</em>
+      </span>
+  </div>
   )
 }

@@ -6,7 +6,7 @@ class PostsController < ApplicationController
                 .by_creation_date
                 .filter(filter_params)
                 .page(params[:page])
-                .per(10)
+                .per(5)
                 .without_count
 
     render json: posts,

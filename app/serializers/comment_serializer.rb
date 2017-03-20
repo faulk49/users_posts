@@ -1,6 +1,13 @@
 class CommentSerializer < ActiveModel::Serializer
-  attribute :body
-  attribute :author_name do
-    object.author.full_name
+  attributes :body, :author_name
+
+  def author_name
+    current_user == object.author ? 'Me' : object.author.to_s
+  end
+
+  private
+
+  def current_user
+    view_context.current_user
   end
 end

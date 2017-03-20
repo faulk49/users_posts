@@ -5,102 +5,84 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
-.navbar-default {
-  background-color: #f63d66;
-  border-color: #5fcfd4;
+  .navbar-default {
+  background-color: #060505;
+  border-color: #242281;
 }
 .navbar-default .navbar-brand {
-  color: #ccd89b;
+  color: #f7fafb;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #6f2481;
+  color: #9d9ea1;
 }
 .navbar-default .navbar-text {
-  color: #ccd89b;
+  color: #f7fafb;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #ccd89b;
+  color: #f7fafb;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #6f2481;
-}
-.navbar-default .navbar-nav > li > .dropdown-menu {
-  background-color: #f63d66;
-}
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
-  color: #ccd89b;
-}
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
-  color: #6f2481;
-  background-color: #5fcfd4;
-}
-.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
-  background-color: #5fcfd4;
-}
-.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
-.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
-.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-  color: #6f2481;
-  background-color: #5fcfd4;
+  color: #9d9ea1;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #6f2481;
-  background-color: #5fcfd4;
+  color: #9d9ea1;
+  background-color: #242281;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  color: #6f2481;
-  background-color: #5fcfd4;
+  color: #9d9ea1;
+  background-color: #242281;
 }
 .navbar-default .navbar-toggle {
-  border-color: #5fcfd4;
+  border-color: #242281;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #5fcfd4;
+  background-color: #242281;
 }
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #ccd89b;
+  background-color: #f7fafb;
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #ccd89b;
+  border-color: #f7fafb;
 }
 .navbar-default .navbar-link {
-  color: #ccd89b;
+  color: #f7fafb;
 }
 .navbar-default .navbar-link:hover {
-  color: #6f2481;
-}
-
-.panel-post {
-  border-color: #f63d66;
-}
-.panel-heading.post {
-  background-color: #deedfb;
-}
-.panel-title.post {
-  color: #ad1e76;
+  color: #9d9ea1;
 }
 
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #ccd89b;
+    color: #f7fafb;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #6f2481;
+    color: #9d9ea1;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #6f2481;
-    background-color: #5fcfd4;
+    color: #9d9ea1;
+    background-color: #242281;
   }
+}
+
+
+
+.panel-post {
+  border-color: #333;
+}
+.panel-heading.post {
+  background-color: #9d9ea1;
+}
+.panel-title.post {
+  color: #fff;
 }

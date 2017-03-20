@@ -97,15 +97,39 @@ class PostsContainer extends React.Component {
 
     return(
       <div>
+
         {
           showSinglePost ? <ShowPost post={currentPost} goToIndex={this.showIndex} /> :
           <div>
-        <NewPostButton
-          handleClick={this.handleNewPostClick}
-          disabled={modalOpen}
-        />
-        <div className='row'>
-          <div className='col-sm-7 col-sm-offset-4'>
+            <NewPostButton
+              handleClick={this.handleNewPostClick}
+              disabled={modalOpen}
+            />
+            {
+              pagination &&
+                <nav>
+                  <ul className='pager'>
+                    {
+                      pagination.posts.prevPage &&
+                        <li><a href='#'
+                          onClick={() => this.handlePageChange(pagination.posts.prevPage || 1)}
+                          ><span aria-hidden='true'>&larr;</span>Newer</a>
+                        </li>
+                    }
+                    {
+                      pagination && pagination.posts.nextPage &&
+                        <li>
+                          <a href='#'
+                          onClick={() => this.handlePageChange(pagination.posts.nextPage || 1)} >
+                          Older<span aria-hidden='true'>&rarr;</span></a>
+                        </li>
+                    }
+                  </ul>
+                </nav>
+            }
+
+        <div className='text-center'>
+          <div className='col-sm-6 col-sm-offset-3'>
             <PostList
               posts={posts}
               showPost={this.showPostInfo}
@@ -130,7 +154,7 @@ const NewPostButton = props => {
   return(
     <button
       type="button"
-      className="btn btn-primary btn-lg"
+      className="btn btn-primary"
       onClick={props.handleClick}
       disabled={props.modalOpen}
     >Create New Post</button>

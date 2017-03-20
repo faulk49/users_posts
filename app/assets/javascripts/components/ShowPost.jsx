@@ -31,11 +31,12 @@ class ShowPost extends React.Component {
     const { comments } = this.state;
     return(
       <div>
-      <button onClick={this.goBack} type='button'>Back</button>
-      <div className='col-sm-8 col-sm-offset-4'>
-      <div className='panel panel-default'>
-        <div className='panel panel-heading'>
-          <h3 className='panel-title'>
+      <button className="btn btn-primary pull-left" onClick={this.goBack} type='button'>Back</button>
+
+      <div className='col-sm-6 col-sm-offset-3'>
+      <div className='panel panel-post'>
+        <div className='panel panel-heading post'>
+          <h3 className='panel-title post'>
             {post.title}
           </h3>
         </div>
@@ -45,13 +46,13 @@ class ShowPost extends React.Component {
           </div>
         </div>
       </div>
-    </div>
       <CommentList
         post={post}
         errors={this.state.errors}
         comments={comments}
         onSubmit={this.handleCommentSubmit} />
     </div>
+  </div>
     )
   }
 }

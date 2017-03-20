@@ -60,14 +60,15 @@ class PostForm extends React.Component {
 
         <label>Body</label>
         <textarea
+          rows='8'
           value={body}
+          style={{'marginBottom': 10, resize: 'none'}}
           className="form-control"
           onChange={this.setBody}/>
           {this.renderErrors('body')}
-
         <button
           type='button'
-          className='btn btn-success'
+          className='btn btn-primary'
           onClick={this.handleSubmit}
         >Create Post</button>
 
